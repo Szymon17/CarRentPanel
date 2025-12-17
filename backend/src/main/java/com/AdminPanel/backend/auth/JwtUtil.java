@@ -20,16 +20,16 @@ public class JwtUtil {
     }
 
     public String extractEmail(String token){
-        return  Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJwt(token).getBody().getSubject();
+        return  Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getSubject();
     }
 
     public  boolean isTokenExpired(String token){
-        Date exp = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJwt(token).getBody().getExpiration();
+        Date exp = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody().getExpiration();
 
         return exp.before(new Date());
     }
 
     public boolean validateToken(String token, String email){
-        return  extractEmail(token).equals(email) && ! isTokenExpired(token);
+        return extractEmail(token).equals(email) && ! isTokenExpired(token);
     }
 }
