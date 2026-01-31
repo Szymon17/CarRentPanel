@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Test {
     @GetMapping("/test")
     public LoginResponse Test(HttpServletRequest req, HttpServletResponse res){
-        return  new LoginResponse("test");
+        return new LoginResponse("", "test");
     }
 }

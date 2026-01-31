@@ -1,0 +1,16 @@
+@use "../../sass/variables" as var
+@use "sass:color"
+
+.loader
+    width: 25px
+    height: 25px
+    border: 4px solid #eeeeee
+    border-top-color: color.adjust(var.$primary-brighter, $lightness: +50%)
+    border-radius: 50%
+    animation: spin 1s infinite ease-in-out
+
+@keyframes spin
+    from
+        transform: rotateZ(0deg)
+    to
+        transform: rotateZ(360deg)

@@ -4,9 +4,34 @@
 
 body {
   margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Open Sans",
+    sans-serif;
 }
 
 button {
   outline: none;
   border: none;
+}
+
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
+#root {
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.content_body {
+  padding: 10px;
 }

@@ -1,0 +1,20 @@
+@use "../../sass/variables" as var
+@use "sass:color"
+    
+.custom-button
+    height: 35px
+    border-radius: 5px
+    cursor: pointer
+    font-weight: 600
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    transition: all 0.3s ease-in-out
+    display: flex
+    justify-content: center
+    align-items: center
+
+    &.btn-primary
+        background: var.$primary-brighter
+        color: #ececec
+
+        &:hover
+            background-color: color.adjust(var.$primary-brighter, $lightness: +5%)

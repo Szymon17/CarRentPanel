@@ -1,11 +1,66 @@
 @use "../../sass/breakpoints" as bp
+@use "../../sass/variables" as var
   
 .navigation 
   width: 100%
-  background-color: #333
+  background-color: var.$primary
   color: white
   height: 100vh
-  padding: 20px
+  padding: 10px
 
   @media (min-width: bp.$md)
     max-width: 250px
+
+  & .tab
+    padding: 10px
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    gap: 10px
+    transition: 0.3s all ease-in-out
+    border-radius: 5px
+
+    &:hover,&.active
+      background: var.$primary-darker
+      
+
+.content_header
+  padding: 10px
+  margin-bottom: 20px
+  border: 1px solid silver
+  font-weight: 600
+  display: flex
+  justify-content: space-between
+  overflow: hidden
+
+  h1
+    font-size: 1.4em
+    font-weight: 600
+    margin: 0
+
+  & .user_snapshot 
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    gap: 10px
+    transform: translateX(50px)
+    transition: transform 0.3s ease-in-out
+
+    &:hover
+      transform: none
+
+    & svg
+      color: silver
+
+    & .shutdown
+      margin-left: 20px
+      color: #eb7575
+      cursor: pointer
+
+    span
+      display: block
+
+      &.welcome
+        color: silver
+        font-size: 0.7em
+        font-weight: normal

@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -33,22 +34,30 @@ public class JwtFilter extends OncePerRequestFilter {
     protected boolean shouldNotFilter(HttpServletRequest request){
         String path = request.getServletPath();
 
-        return path.startsWith("/auth/");
+        return path.startsWith("/auth/login");
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
+    protected void doFilterInternal(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain
+    ) throws ServletException, IOException {
         String token = getToken(request.getCookies());
-        System.out.println("Halo???" + token);
-        String userEmail = jwtUtil.extractEmail(token);
-        if (token != null && userEmail != null && jwtUtil.validateToken(token, userEmail)){
-            UserDetails user = userDetails.loadUserByUsername(userEmail); //tutaj musimy stworzyć customUserDetailsService i ndpisać loadUserByUSername
 
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(auth);
+        if (token != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            String userEmail = jwtUtil.extractEmail(token);
+
+            if (userEmail != null && jwtUtil.validateToken(token, userEmail)) {
+                UserDetails user = userDetails.loadUserByUsername(userEmail);
+                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user,null,user.getAuthorities());
+                auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
         }
 
         filterChain.doFilter(request, response);
     }
+
 
 }
