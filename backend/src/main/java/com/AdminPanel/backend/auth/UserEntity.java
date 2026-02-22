@@ -1,10 +1,10 @@
-package com.AdminPanel.backend.entity;
+package com.AdminPanel.backend.auth;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "panel_users")
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

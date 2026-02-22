@@ -48,7 +48,7 @@ const SignIn = () => {
 
         <div className="SingIn__inputs">
           <Input state={emailState} label={"Email"}></Input>
-          <Input state={passwordState} label={"Password"}></Input>
+          <Input type="password" state={passwordState} label={"Password"}></Input>
           <Button fn={tryLogin}>Login</Button>
         </div>
       </div>

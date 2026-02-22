@@ -1,7 +1,5 @@
 package com.AdminPanel.backend.auth;
 
-import com.AdminPanel.backend.entity.User;
-import com.AdminPanel.backend.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +16,12 @@ public class AuthService {
     }
 
     public String login(String email, String password){
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+        UserEntity userEntity = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (!passwordEncoder.matches(password, user.getPassword())){
+        if (!passwordEncoder.matches(password, userEntity.getPassword())){
             throw new RuntimeException("Invalid password");
         }
 
-        return jwtUtil.generateToken(user.getEmail());
+        return jwtUtil.generateToken(userEntity.getEmail());
     }
 }
