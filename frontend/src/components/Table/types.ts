@@ -1,18 +1,18 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export type PrimitiveType = string | number | Date | null | boolean;
 
-type HeaderEither<T> =
+type HeaderEither =
   | { header: React.ReactNode | string; headerFn?: never }
   | { header?: never; headerFn: (header: HeaderDataOb) => React.ReactNode | string };
 
 export type metaData = {
   searchable?: boolean;
   className?: string;
-  aditionalButton?: JSX.Element;
+  aditionalButton?: ReactNode;
 };
 
-export type ColumnDef<T, K extends keyof T> = HeaderEither<T> & {
+export type ColumnDef<T, K extends keyof T> = HeaderEither & {
   meta?: metaData;
   cell: (row: RowType<T, K>) => T[K] | ReactNode;
 };

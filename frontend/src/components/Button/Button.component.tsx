@@ -1,12 +1,12 @@
-import Loader from "../Loadeer/Loader.component";
+import Loader from "../Loader/Loader.component";
 import "./Button.style.sass";
-import { useState, type FC, type HTMLAttributes, type MouseEvent, type MouseEventHandler, type ReactNode } from "react";
+import { useState, type FC, type ButtonHTMLAttributes, type MouseEvent, type MouseEventHandler, type ReactNode } from "react";
 
 enum BUTTON_TYPES {
   STANDARD = "primary",
 }
 
-type Props = HTMLAttributes<HTMLButtonElement> & {
+type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   fn: (e: MouseEvent) => Promise<void>;
   type?: BUTTON_TYPES;

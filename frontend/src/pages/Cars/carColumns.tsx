@@ -28,6 +28,7 @@ const getColumns = (): ColumnsDef<CarColumnsUnion> => {
     brand: {
       header: "Brand",
       cell: row => row.getValue(),
+      meta: { className: "cars__brand" },
     },
     model: {
       header: "Model",
@@ -39,7 +40,7 @@ const getColumns = (): ColumnsDef<CarColumnsUnion> => {
     },
     power: {
       header: "Power",
-      cell: row => row.getValue() + "hp",
+      cell: row => row.getValue() + " hp",
     },
     fuelType: {
       header: "Fuel type",
@@ -47,7 +48,8 @@ const getColumns = (): ColumnsDef<CarColumnsUnion> => {
     },
     dailyPrice: {
       header: "Daily price",
-      cell: row => row.getValue() + "PLN",
+      cell: row => row.getValue() + " PLN",
+      meta: { className: "cars__price" },
     },
     view: {
       header: "View",
@@ -56,6 +58,7 @@ const getColumns = (): ColumnsDef<CarColumnsUnion> => {
           <Chevron />
         </a>
       ),
+      meta: { className: "cars__view" },
     },
   };
 };

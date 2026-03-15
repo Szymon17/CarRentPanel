@@ -12,7 +12,8 @@ const Navigation = () => {
   const [activeTab, setActiveTab] = useState(icons[0].name);
 
   useEffect(() => {
-    const current = icons.find(icon => icon.link === location.pathname);
+    const current = icons.find(icon => icon.link !== "/" && location.pathname.startsWith(icon.link));
+
     if (current) setActiveTab(current.name);
   }, [location.pathname]);
 

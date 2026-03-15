@@ -1,12 +1,17 @@
 @use "../../sass/breakpoints" as bp
 @use "../../sass/variables" as var
   
+.content
+  position: relative
+
 .navigation 
   width: 100%
   background-color: var.$primary
   color: white
   height: 100vh
   padding: 10px
+  position: sticky
+  top: 0
 
   @media (min-width: bp.$md)
     max-width: 250px
@@ -26,7 +31,6 @@
 
 .content_header
   padding: 10px
-  margin-bottom: 20px
   border: 1px solid silver
   font-weight: 600
   display: flex

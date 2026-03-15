@@ -1,0 +1,133 @@
+@use "../../sass/variables" as var
+@use "sass:color"
+
+.popup-overlay
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: rgba(0, 0, 0, 0.5)
+  display: flex
+  justify-content: center
+  align-items: center
+  z-index: 1000
+  animation: fadeIn 0.2s ease-out
+
+.popup-content
+  background: white
+  border-radius: 8px
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15)
+  max-width: 400px
+  width: 90%
+  max-height: 80vh
+  overflow-y: auto
+  animation: slideIn 0.2s ease-out
+
+.popup-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 20px 20px 15px
+  border-bottom: 1px solid #e0e0e0
+
+.popup-title
+  margin: 0
+  font-size: 1.2em
+  font-weight: 600
+  color: var.$primary
+
+.popup-close
+  background: none
+  border: none
+  font-size: 24px
+  cursor: pointer
+  color: #666
+  padding: 0
+  width: 30px
+  height: 30px
+  display: flex
+  align-items: center
+  justify-content: center
+  border-radius: 50%
+  transition: all 0.2s ease
+
+  &:hover
+    background-color: #f0f0f0
+    color: var.$primary
+
+.popup-body
+  padding: 20px
+
+.popup-message
+  margin: 0
+  font-size: 0.95em
+  line-height: 1.5
+  color: #333
+
+.popup-footer
+  display: flex
+  justify-content: flex-end
+  gap: 10px
+  padding: 15px 20px 20px
+  border-top: 1px solid #e0e0e0
+
+.popup-btn
+  padding: 8px 16px
+  border: none
+  border-radius: 5px
+  cursor: pointer
+  font-weight: 600
+  font-size: 0.85em
+  transition: all 0.2s ease
+  min-width: 80px
+
+  &:focus
+    outline: 2px solid var.$primary-brighter
+    outline-offset: 2px
+
+.popup-btn-cancel
+  background: #f5f5f5
+  color: #666
+  border: 1px solid #ddd
+
+  &:hover
+    background: #e8e8e8
+    border-color: #ccc
+
+.popup-btn-confirm
+  color: white
+  border: 1px solid transparent
+
+  &.popup-btn-danger
+    background: #dc3545
+
+    &:hover
+      background: color.adjust(#dc3545, $lightness: -10%)
+
+  &.popup-btn-warning
+    background: #ffc107
+    color: #212529
+
+    &:hover
+      background: color.adjust(#ffc107, $lightness: -10%)
+
+  &.popup-btn-info
+    background: var.$primary-brighter
+
+    &:hover
+      background: color.adjust(var.$primary-brighter, $lightness: -10%)
+
+@keyframes fadeIn
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes slideIn
+  from
+    opacity: 0
+    transform: scale(0.9) translateY(-20px)
+  to
+    opacity: 1
+    transform: scale(1) translateY(0)

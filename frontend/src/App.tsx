@@ -4,6 +4,7 @@ import SignIn from "./pages/SignIn/SignIn";
 import AuthProvider from "./context/Auth.context.tsx";
 import { ToastContainer } from "react-toastify";
 import Cars from "./pages/Cars/Cars.tsx";
+import Car from "./pages/Car/Car.tsx";
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
 
           <Route element={<Navigation />}>
             <Route path="/" index element={<div>elo</div>} />
-            <Route path="/cars" element={<Cars />} />
+            <Route path="cars" element={<Cars />} />
+            <Route path="cars/car" element={<Car />} />
+            <Route path="cars/create" element={<Car />} />
           </Route>
         </Routes>
         <ToastContainer />

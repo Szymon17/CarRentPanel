@@ -1,6 +1,5 @@
 package com.AdminPanel.backend.cars;
 
-import com.AdminPanel.backend.auth.UserRepository;
 import com.AdminPanel.backend.cars.dto.GetCarsResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cars")
@@ -25,11 +25,36 @@ public class CarsController {
         return new GetCarsResponse(cars);
     }
 
+    @GetMapping("/car")
+    public ResponseEntity<CarEntity> httpGetCarByID(@RequestParam Long id){
+        CarEntity car = carsRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Car not found"));
+
+        return ResponseEntity.ok(car);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<CarEntity> httpCreateCar(@RequestBody CarEntity car){
             car.setId(null);
             CarEntity savedCar = carsRepository.save(car);
 
             return ResponseEntity.ok(savedCar);
+    }
+
+    @PutMapping("/car")
+    public ResponseEntity<CarEntity> httpModifyCar(@RequestBody CarEntity car){
+        CarEntity savedCar = carsRepository.save(car);
+
+        return ResponseEntity.ok(savedCar);
+    }
+
+    @DeleteMapping("/car")
+    public ResponseEntity<CarEntity> httpDeleteCar(@RequestParam Long id){
+        Optional<CarEntity> car = carsRepository.findById(id);
+
+        if(car.isEmpty()) return ResponseEntity.notFound().build();
+
+        carsRepository.deleteById(id);
+        return ResponseEntity.ok(car.get());
     }
 }
