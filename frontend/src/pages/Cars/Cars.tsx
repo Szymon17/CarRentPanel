@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import createTable from "@/components/Table/Table.component";
 import getColumns, { type CarColumnsUnion } from "./carColumns";
-import { Link } from "react-router-dom";
 
 const Cars = () => {
   const [cars, setCars] = useState<CarColumnsUnion[]>([]);

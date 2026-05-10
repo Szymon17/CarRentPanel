@@ -4,15 +4,15 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { AuthContext } from "@/context/Auth.context";
 import PersonIcon from "bootstrap-icons/icons/person-circle.svg?react";
 import PowerIcon from "bootstrap-icons/icons/power.svg?react";
-import icons from "./icons";
+import nav_items from "./nav-items";
 
 const Navigation = () => {
   const location = useLocation();
   const { user, logout } = useContext(AuthContext);
-  const [activeTab, setActiveTab] = useState(icons[0].name);
+  const [activeTab, setActiveTab] = useState(nav_items[0].name);
 
   useEffect(() => {
-    const current = icons.find(icon => icon.link !== "/" && location.pathname.startsWith(icon.link));
+    const current = nav_items.find(icon => icon.link !== "/" && location.pathname.startsWith(icon.link));
 
     if (current) setActiveTab(current.name);
   }, [location.pathname]);
@@ -21,7 +21,7 @@ const Navigation = () => {
     return (
       <>
         <div className="navigation">
-          {icons.map((props, index) => (
+          {nav_items.map((props, index) => (
             <Link key={index} onClick={() => setActiveTab(props.name)} className={`tab${activeTab === props.name ? " active" : ""}`} to={props.link}>
               <props.icon width={20} height={20} />
               <span className="tab__name">{props.name}</span>

@@ -10,6 +10,4 @@ import java.util.List;
 public interface CarsRepository extends JpaRepository<CarEntity, Long> {
     @Query(value = "SELECT * FROM Cars ORDER BY ID DESC LIMIT 50",  nativeQuery = true)
     List<CarEntity> findFirst50Cars();
-
-
 }

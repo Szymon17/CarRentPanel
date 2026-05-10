@@ -14,7 +14,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 type LoadingState = "idle" | "loading";
 
-const Button: FC<Props> = ({ children, fn, type = BUTTON_TYPES.STANDARD, ...standardAttributes }) => {
+const Button: FC<Props> = ({ children, fn, type = BUTTON_TYPES.STANDARD, className, ...standardAttributes }) => {
   const [loadingState, setLoadingState] = useState<LoadingState>("idle");
 
   const clickHandler: MouseEventHandler<HTMLButtonElement> = async e => {
@@ -23,8 +23,11 @@ const Button: FC<Props> = ({ children, fn, type = BUTTON_TYPES.STANDARD, ...stan
     setLoadingState("idle");
   };
 
+  const baseClass = `custom-button btn-${type}`;
+  const finalClassName = className ? `${baseClass} ${className}` : baseClass;
+
   return (
-    <button {...standardAttributes} onClick={clickHandler} className={`custom-button btn-${type}`}>
+    <button {...standardAttributes} onClick={clickHandler} className={finalClassName}>
       {loadingState === "idle" ? children : <Loader />}
     </button>
   );
