@@ -1,10 +1,11 @@
-# Admin Panel - Car Rental System
+# Admin Panel - Car Rental System (In progress)
 
 ## Overview
 Admin panel for managing a car rental system. It provides tools for managing vehicles, reservations, and users in one place. The panel is designed to make everyday administration of the system simple and efficient.
 
 ## Features
 - Add, edit, and remove vehicles
+- Order management (in progress)
 
 ## Tech Stack
 - React
