@@ -1,0 +1,20 @@
+@use "./variables" as var 
+
+@mixin icon-link($size: 26px, $icon-size: 13px)
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    width: $size
+    height: $size
+    background: var.$primary
+    color: white
+    border-radius: 3px
+    transition: background 0.15s ease
+    text-decoration: none
+
+    &:hover
+        background: var.$primary-darker
+
+    svg
+        width: $icon-size
+        height: $icon-size

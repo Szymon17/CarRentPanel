@@ -1,31 +1,29 @@
 @use "../../sass/variables" as var
+@use "../../sass/breakpoints" as bp
 
 .car_page
     min-height: 100vh
     background: #f5f7fa
-    padding: 0
 
     &__field-error
-        color: #b84545
-        padding-left: 5px
-        font-size: 0.9em
+        color: #dc2626
+        font-size: 0.75rem
+        margin-top: 2px
 
     &__header
         background: white
-        border-bottom: 1px solid #e8ecf1
-        padding: 24px 32px
+        border-bottom: 1px solid #dde3ea
+        padding: 12px 24px
         position: sticky
         top: 0
         z-index: 100
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08)
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05)
 
     &__header-content
-        max-width: 1600px
-        margin: 0 auto
         display: flex
         justify-content: space-between
-        align-items: flex-start
-        gap: 24px
+        align-items: center
+        gap: 16px
 
     &__header-left
         flex: 1
@@ -33,92 +31,77 @@
     &__breadcrumb
         display: flex
         align-items: center
-        gap: 8px
-        font-size: 0.85em
-        margin-bottom: 12px
+        gap: 6px
+        font-size: 0.8125rem
+        margin-bottom: 3px
 
         a
             color: var.$primary
             text-decoration: none
             font-weight: 500
-            transition: color 0.3s ease
 
             &:hover
-                color: var.$primary-darker
+                text-decoration: underline
 
         &-sep
-            color: #cbd5e0
-            margin: 0 4px
+            color: #cbd5e1
 
         span
-            color: #718096
-            font-weight: 400
+            color: #64748b
 
     &__page-title
         margin: 0
-        font-size: 2em
-        font-weight: 700
-        color: #1a202c
+        font-size: 1.125rem
+        font-weight: 600
+        color: #1e293b
 
     &__header-actions
         display: flex
         align-items: center
-        gap: 16px
+        gap: 12px
 
     &__status-badge
         display: inline-flex
         align-items: center
-        gap: 6px
-        padding: 8px 16px
-        border-radius: 20px
-        font-size: 0.8em
+        gap: 5px
+        padding: 3px 10px
+        border-radius: 3px
+        font-size: 0.75rem
         font-weight: 600
         text-transform: uppercase
-        letter-spacing: 0.3px
-        white-space: nowrap
+        letter-spacing: 0.4px
 
         &--active
-            background: #d4edda
-            color: #155724
-            border: 1px solid #c3e6cb
+            background: #dcfce7
+            color: #166534
+            border: 1px solid #bbf7d0
 
     &__status-dot
         display: inline-block
         width: 6px
         height: 6px
         border-radius: 50%
-        background: #28a745
-        animation: pulse 2s infinite
+        background: #16a34a
 
     &__container
-        max-width: 1600px
-        margin: 0 auto
-        padding: 32px
-
-    &__hero-section
-        margin-bottom: 32px
+        padding: 20px 24px
+        display: flex
+        flex-direction: column
+        gap: 16px
 
     &__hero-card
         background: white
-        border-radius: 12px
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1)
-        border: 1px solid #e8ecf1
+        border: 1px solid #dde3ea
+        border-radius: 4px
         display: grid
-        grid-template-columns: 1fr 1fr
-        gap: 0
-
-        @media (max-width: 1200px)
-            grid-template-columns: 1fr
-            gap: 24px
+        grid-template-columns: minmax(220px, 400px) 1fr
+        overflow: hidden
 
     &__hero-image-wrapper
         position: relative
-        min-height: 400px
-        background: linear-gradient(135deg, #f8f9fa 0%, #e2e8f0 100%)
+        min-height: 160px
+        background: #f0f4f8
         overflow: hidden
-
-        @media (max-width: 1200px)
-            min-height: 350px
 
     &__hero-image
         position: absolute
@@ -131,22 +114,18 @@
             width: 100%
             height: 100%
             object-fit: cover
-            transition: transform 0.4s ease
-
-            &:hover
-                transform: scale(1.05)
 
     &__image-loading
         position: absolute
         top: 50%
         left: 50%
         transform: translate(-50%, -50%)
-        color: #718096
-        font-weight: 600
-        z-index: 1
+        color: #64748b
+        font-size: 0.8125rem
         background: rgba(255, 255, 255, 0.9)
-        padding: 12px 24px
-        border-radius: 6px
+        padding: 6px 12px
+        border-radius: 3px
+        z-index: 1
 
     &__hero-empty
         position: absolute
@@ -158,358 +137,231 @@
         flex-direction: column
         align-items: center
         justify-content: center
-        color: #718096
-        gap: 16px
-
-    &__hero-empty-icon
-        font-size: 4em
-        opacity: 0.5
+        color: #94a3b8
+        gap: 8px
 
         p
             margin: 0
-            font-weight: 500
-            font-size: 1em
+            font-size: 0.75rem
+
+    &__hero-empty-icon
+        width: 36px
+        height: 36px
+        opacity: 0.35
 
     &__hero-info
-        padding: 32px
+        padding: 16px 20px
         display: flex
         flex-direction: column
-        justify-content: space-between
-        background: white
+        gap: 12px
+        border-left: 1px solid #dde3ea
 
     &__hero-title-section
-        margin-bottom: 24px
+        border-bottom: 1px solid #e8edf2
+        padding-bottom: 10px
 
     &__hero-title
-        margin: 0 0 8px 0
-        font-size: 1.8em
-        font-weight: 700
-        color: #1a202c
-        line-height: 1.2
+        margin: 0 0 3px 0
+        font-size: 1rem
+        font-weight: 600
+        color: #1e293b
 
     &__hero-subtitle
         margin: 0
-        font-size: 0.95em
-        color: #718096
-        font-weight: 500
+        font-size: 0.8125rem
+        color: #64748b
 
     &__hero-specs
         display: grid
-        grid-template-columns: 1fr 1fr
-        gap: 12px
-        margin-bottom: 24px
-        padding-bottom: 24px
-        border-bottom: 1px solid #e8ecf1
-
-        @media (max-width: 600px)
-            grid-template-columns: 1fr
+        grid-template-columns: repeat(4, 1fr)
+        gap: 6px
 
     &__hero-spec
         display: flex
         flex-direction: column
-        gap: 4px
-        background: #f7fafc
-        padding: 12px
-        border-radius: 8px
-        border: 1px solid #edf2f7
+        gap: 2px
+        background: #f8fafc
+        border: 1px solid #e8edf2
+        padding: 8px 10px
+        border-radius: 3px
 
     &__hero-spec-label
-        font-size: 0.7em
-        color: #718096
+        font-size: 0.625rem
+        color: #64748b
         text-transform: uppercase
         letter-spacing: 0.5px
         font-weight: 600
 
     &__hero-spec-value
-        font-size: 0.95em
-        color: #2d3748
-        font-weight: 600
+        font-size: 0.8125rem
+        color: #1e293b
+        font-weight: 500
         display: flex
         align-items: center
-        gap: 6px
+        gap: 4px
 
         &.car_page__hero-spec-with-icon
             svg
-                width: 18px
-                height: 18px
+                width: 12px
+                height: 12px
                 flex-shrink: 0
 
     &__hero-pricing
-        background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%)
-        padding: 16px
-        border-radius: 8px
-        border: 1px solid #e8ecf1
+        background: #f0f4f8
+        border: 1px solid #dde3ea
+        padding: 10px 14px
+        border-radius: 3px
+        display: flex
+        align-items: baseline
+        gap: 6px
 
-        &-amount
-            font-size: 1.8em
-            font-weight: 800
-            color: var.$primary
-            display: block
-            margin-bottom: 4px
+    &__hero-price-amount
+        font-size: 1.25rem
+        font-weight: 700
+        color: #1e293b
 
-        &-label
-            font-size: 0.85em
-            color: #718096
-            font-weight: 500
-            text-transform: uppercase
-            letter-spacing: 0.3px
+    &__hero-price-label
+        font-size: 0.6875rem
+        color: #64748b
+        font-weight: 600
+        text-transform: uppercase
+        letter-spacing: 0.4px
 
     &__form-container
         display: flex
         flex-direction: column
-        gap: 24px
+        gap: 16px
 
     &__message
-        padding: 16px 20px
-        border-radius: 8px
-        font-weight: 600
-        font-size: 0.9em
-        border-left: 4px solid transparent
+        padding: 10px 14px
+        border-radius: 3px
+        font-size: 0.875rem
+        font-weight: 500
+        border-left: 3px solid transparent
         display: flex
         align-items: center
-        gap: 12px
-        animation: slideDown 0.3s ease
+        gap: 10px
 
         &-icon
-            font-size: 1.1em
-            font-weight: 800
-            width: 24px
-            height: 24px
+            width: 16px
+            height: 16px
             flex-shrink: 0
-            display: flex
-            align-items: center
-            justify-content: center
-
-            svg
-                width: 100%
-                height: 100%
-                display: block
 
         &--success
-            background: #d4edda
-            color: #155724
-            border-color: #28a745
+            background: #f0fdf4
+            color: #166534
+            border-color: #16a34a
 
         &--error
-            background: #f5d5d5
-            color: #721c24
-            border-color: #e53e3e
+            background: #fef2f2
+            color: #991b1b
+            border-color: #dc2626
 
     &__form-section
         background: white
-        border-radius: 12px
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08)
-        border: 1px solid #e8ecf1
-        transition: all 0.3s ease
-
-        &:hover
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12)
+        border: 1px solid #dde3ea
+        border-radius: 4px
 
     &__form-header
-        background: linear-gradient(135deg, #f5f7fa 0%, #eef1f6 100%)
-        padding: 20px
-        border-bottom: 1px solid #e8ecf1
+        background: #f0f4f8
+        padding: 10px 16px
+        border-bottom: 1px solid #dde3ea
         display: flex
-        align-items: flex-start
-        gap: 16px
+        align-items: center
+        gap: 8px
 
         &-icon
-            font-size: 1.6em
-            min-width: 28px
-            text-align: center
-            opacity: 0.8
-            margin-top: 2px
-            width: 28px
-            height: 28px
-            color: #4a5568
-
-            svg
-                width: 100%
-                height: 100%
-                display: block
+            width: 14px
+            height: 14px
+            color: #64748b
+            flex-shrink: 0
 
         &-content
-            flex: 1
-
             h3
-                margin: 0 0 6px 0
-                font-size: 1.1em
+                margin: 0 0 1px 0
+                font-size: 0.8125rem
                 font-weight: 600
-                color: #2d3748
+                color: #1e293b
 
             p
                 margin: 0
-                color: #718096
-                font-size: 0.85em
+                color: #64748b
+                font-size: 0.75rem
 
     &__form-grid
-        padding: 24px
+        padding: 16px
         display: grid
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))
-        gap: 20px
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
+        gap: 12px
 
         &--1col
-            grid-template-columns: 1fr
+            grid-template-columns: minmax(0, 320px)
 
         &--2col
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
-
-            @media (max-width: 768px)
-                grid-template-columns: 1fr
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
 
         &--3col
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
-
-            @media (max-width: 768px)
-                grid-template-columns: repeat(2, 1fr)
-
-            @media (max-width: 480px)
-                grid-template-columns: 1fr
+            grid-template-columns: repeat(3, 1fr)
 
     &__field
         display: flex
         flex-direction: column
-        gap: 8px
+        gap: 4px
 
         label
             font-weight: 600
-            font-size: 0.75em
-            color: #4a5568
+            font-size: 0.6875rem
+            color: #374151
             text-transform: uppercase
             letter-spacing: 0.5px
             display: flex
             align-items: center
-            gap: 4px
+            gap: 3px
 
         input
-            border: 1px solid #e2e8f0
-            border-radius: 6px
-            padding: 11px 12px
-            font-size: 0.95em
+            border: 1px solid #dde3ea
+            border-radius: 3px
+            padding: 7px 10px
+            font-size: 0.875rem
             outline: none
-            transition: all 0.3s ease
-            background: white
-            font-weight: 500
-            color: #2d3748
+            transition: border-color 0.15s ease, box-shadow 0.15s ease
+            color: #1e293b
             font-family: inherit
+            background: white
 
             &::placeholder
-                color: #a0aec0
+                color: #94a3b8
 
             &:focus
                 border-color: var.$primary
-                box-shadow: 0 0 0 3px rgba(10, 22, 36, 0.08)
-                background: #fafbfc
+                box-shadow: 0 0 0 2px rgba(10, 22, 36, 0.08)
 
             &:hover:not(:focus)
-                border-color: #cbd5e0
+                border-color: #94a3b8
+
+    &__input--error
+        border-color: #dc2626 !important
+
+        &:focus
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1) !important
+
+    &__select--error > div
+        border-color: #dc2626 !important
 
     &__required
-        color: #e53e3e
+        color: #dc2626
         font-weight: 700
 
     &__actions-section
         background: white
-        border-radius: 12px
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08)
-        border: 1px solid #e8ecf1
-        padding: 24px
+        border: 1px solid #dde3ea
+        border-radius: 4px
+        padding: 16px
 
     &__actions
         display: flex
-        gap: 12px
+        gap: 8px
         flex-wrap: wrap
-
-    &__btn-primary
-        background: linear-gradient(135deg, var.$primary 0%, var.$primary-darker 100%)
-        color: white
-        border: none
-        padding: 11px 28px
-        border-radius: 6px
-        font-weight: 600
-        font-size: 0.9em
-        cursor: pointer
-        transition: all 0.3s ease
-        box-shadow: 0 2px 8px rgba(10, 22, 36, 0.2)
-        display: inline-flex
-        align-items: center
-        justify-content: center
-        letter-spacing: 0.3px
-
-        &:hover:not(:disabled)
-            transform: translateY(-1px)
-            box-shadow: 0 4px 12px rgba(10, 22, 36, 0.3)
-
-        &:active:not(:disabled)
-            transform: translateY(0)
-
-        &:disabled
-            opacity: 0.65
-            cursor: not-allowed
-
-    &__btn-secondary
-        background: white
-        color: #4a5568
-        border: 1px solid #cbd5e0
-        padding: 11px 28px
-        border-radius: 6px
-        font-weight: 600
-        font-size: 0.9em
-        cursor: pointer
-        transition: all 0.3s ease
-        display: inline-flex
-        align-items: center
-        justify-content: center
-        letter-spacing: 0.3px
-
-        &:hover
-            background: #f7fafc
-            border-color: var.$primary
-            color: var.$primary
-            transform: translateY(-1px)
-
-    &__btn-danger
-        background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%)
-        color: white
-        border: none
-        padding: 11px 28px
-        border-radius: 6px
-        font-weight: 600
-        font-size: 0.9em
-        cursor: pointer
-        transition: all 0.3s ease
-        box-shadow: 0 2px 8px rgba(229, 62, 62, 0.2)
-        display: inline-flex
-        align-items: center
-        justify-content: center
-        letter-spacing: 0.3px
-
-        &:hover
-            transform: translateY(-1px)
-            box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3)
-
-        &:active
-            transform: translateY(0)
-
-    &__btn-cancel
-        background: #e2e8f0
-        color: #4a5568
-        border: none
-        padding: 11px 28px
-        border-radius: 6px
-        font-weight: 600
-        font-size: 0.9em
-        cursor: pointer
-        transition: all 0.3s ease
-        display: inline-flex
-        align-items: center
-        justify-content: center
-        letter-spacing: 0.3px
-
-        &:hover
-            background: #cbd5e0
-            color: #2d3748
-            transform: translateY(-1px)
 
     .loader
         position: fixed
@@ -520,58 +372,39 @@
         transform: translate(-50%, -50%)
         z-index: 1000
 
-@keyframes pulse
-    0%, 100%
-        opacity: 1
-    50%
-        opacity: 0.5
+    @media (max-width: bp.$lg)
+        &__hero-specs
+            grid-template-columns: repeat(2, 1fr)
 
-@keyframes slideDown
-    from
-        opacity: 0
-        transform: translateY(-10px)
-    to
-        opacity: 1
-        transform: translateY(0)
+    @media (max-width: bp.$md)
+        &__header
+            padding: 10px 16px
 
-@media (max-width: 1200px)
-    .car_page
         &__container
-            padding: 24px
+            padding: 14px 16px
 
         &__hero-card
             grid-template-columns: 1fr
 
         &__hero-image-wrapper
-            min-height: 350px
-
-@media (max-width: 768px)
-    .car_page
-        &__header
-            padding: 16px 20px
-
-        &__header-content
-            flex-direction: column
-            align-items: flex-start
-            gap: 16px
-
-        &__header-actions
-            width: 100%
-            justify-content: space-between
-
-        &__page-title
-            font-size: 1.5em
-
-        &__container
-            padding: 16px
+            min-height: 180px
 
         &__hero-info
-            padding: 24px
+            border-left: none
+            border-top: 1px solid #dde3ea
 
         &__form-grid
-            padding: 16px
-            gap: 16px
+            &--3col
+                grid-template-columns: repeat(2, 1fr)
 
+        &__form-grid--1col
+            grid-template-columns: 1fr
+
+    @media (max-width: bp.$sm)
+        &__hero-specs
+            grid-template-columns: repeat(2, 1fr)
+
+        &__form-grid
             &--2col,
             &--3col
                 grid-template-columns: 1fr

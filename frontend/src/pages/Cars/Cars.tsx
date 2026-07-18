@@ -14,6 +14,7 @@ const Cars = () => {
     try {
       setLoading(true);
       setError(null);
+
       const req = await fetch(`${serverUrl}/cars/list`, { credentials: "include" });
       const res = await req.json();
 
@@ -65,6 +66,9 @@ const Cars = () => {
   return (
     <div className="cars">
       <div className="cars__actions">
+        <span className="cars__count">
+          {cars.length} {cars.length === 1 ? "record" : "records"}
+        </span>
         <Link to="/cars/create" className="cars__create-btn">
           + Create New Car
         </Link>

@@ -3,10 +3,10 @@ package com.AdminPanel.backend.cars.dto;
 import com.AdminPanel.backend.cars.CarEntity;
 import java.util.List;
 
-public class GetCarsResponse {
+public class OrderWithCarResponse {
    List<CarEntity> cars;
 
-   public GetCarsResponse(List<CarEntity> cars){
+   public OrderWithCarResponse(List<CarEntity> cars){
        this.cars = cars;
    }
 

@@ -1,145 +1,170 @@
 @use "../../sass/variables" as var
+@use "../../sass/breakpoints" as bp
+@use "../../sass/mixins" as mixins
 
 .cars
-    padding: 20px
-    background-color: #f8f9fa
+    padding: 24px
+    min-height: 100%
+    background: #f5f7fa
 
     &__actions
-        margin-bottom: 24px
+        margin-bottom: 16px
         display: flex
-        justify-content: flex-end
+        justify-content: space-between
+        align-items: center
+
+    &__count
+        font-size: 0.8125rem
+        color: #64748b
+        font-weight: 500
 
     &__create-btn
-        background: linear-gradient(135deg, var.$primary 0%, var.$primary-darker 100%)
+        background: var.$primary
         color: white
         text-decoration: none
-        padding: 12px 24px
-        border-radius: 8px
-        font-weight: 600
-        font-size: 0.95em
-        transition: all 0.3s ease
-        box-shadow: 0 4px 12px rgba(10, 22, 36, 0.3)
+        padding: 8px 16px
+        border-radius: 4px
+        font-weight: 500
+        font-size: 0.875rem
+        transition: background 0.15s ease
         display: inline-flex
         align-items: center
-        gap: 8px
+        gap: 6px
 
         &:hover
-            transform: translateY(-2px)
-            box-shadow: 0 6px 20px rgba(10, 22, 36, 0.4)
+            background: var.$primary-darker
             text-decoration: none
             color: white
 
     &__loading
-        text-align: center
-        padding: 40px
+        display: flex
+        align-items: center
+        justify-content: center
+        padding: 48px
+        color: #64748b
+        font-size: 0.875rem
 
     &__error
-        text-align: center
-        padding: 40px
-        color: #dc3545
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        padding: 48px
+        color: #dc2626
+        font-size: 0.875rem
 
     &__retry-btn
-        margin-top: 10px
-        padding: 8px 16px
-        background-color: #007bff
+        margin-top: 12px
+        padding: 6px 14px
+        background: var.$primary
         color: white
         border: none
         border-radius: 4px
         cursor: pointer
-        font-size: 0.9em
+        font-size: 0.85rem
         font-weight: 500
-        transition: background-color 0.2s ease
+        transition: background 0.15s ease
 
         &:hover
-            background-color: #0056b3
+            background: var.$primary-darker
 
     &__table-wrapper
         overflow-x: auto
+        border: 1px solid #dde3ea
+        border-radius: 4px
         background: white
-        border-radius: 8px
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06)
+        -webkit-overflow-scrolling: touch
 
     &__empty
         text-align: center
-        padding: 40px
-        color: #6c757d
-        font-style: italic
+        padding: 48px
+        color: #94a3b8
+        font-size: 0.875rem
 
     &__table
         border-collapse: collapse
-        border-radius: 8px
-        overflow: hidden
         width: 100%
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
-        background-color: white
-
-        & tr
-            border-bottom: 1px solid #e9ecef
-            transition: background-color 0.2s ease
-
-            &:hover
-                background-color: #f8f9fa
-
-            &:last-child
-                border-bottom: none
+        background: white
+        font-size: 0.8125rem
 
         & th
-            text-align: left
-            background-color: var.$primary
-            color: white
-            padding: 16px 20px
-            font-size: 0.9em
+            background: #f0f4f8
+            color: #1e293b
+            padding: 9px 14px
             font-weight: 600
+            font-size: 0.75rem
             text-transform: uppercase
             letter-spacing: 0.5px
+            border: 1px solid #dde3ea
+            text-align: left
+            white-space: nowrap
+            position: sticky
+            top: 0
+            z-index: 1
 
         & td
-            padding: 16px 20px
-            color: #495057
-            font-size: 0.9em
+            padding: 8px 14px
+            border: 1px solid #e8edf2
+            color: #374151
+            vertical-align: middle
+
+        & tbody tr
+            &:nth-child(even)
+                background: #f8fafc
+
+            &:hover td
+                background: #eff6ff
 
     &__img
         img
-            max-height: 80px
-            max-width: 120px
-            border-radius: 6px
+            max-height: 70px
+            max-width: 130px
+            border-radius: 3px
             object-fit: cover
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
-            transition: transform 0.2s ease
-
-            &:hover
-                transform: scale(1.05)
+            display: block
 
     &__id
-        font-weight: 600
-        color: var.$primary
+        font-family: 'Courier New', monospace
+        font-size: 0.75rem
+        color: #64748b
 
     &__brand
         font-weight: 600
-        color: #212529
+        color: #1e293b
+
+    &__model
+        color: #374151
+
+    &__year, &__fuel-type
+        color: #64748b
+
+    &__power
+        color: #64748b
 
     &__price
         font-weight: 600
-        color: #28a745
+        color: #15803d
+        text-align: right
+
+        &.cars__price th
+            text-align: right
 
     &__view
+        text-align: center
+
         a
-            display: inline-flex
-            align-items: center
-            justify-content: center
-            width: 36px
-            height: 36px
-            background-color: var.$primary
-            color: white
-            border-radius: 6px
-            transition: all 0.2s ease
-            text-decoration: none
+            @include mixins.icon-link($size: 26px, $icon-size: 13px)
+        
 
-            &:hover
-                background-color: var.$primary-darker
-                transform: translateY(-1px)
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
+    @media (max-width: bp.$lg)
+        &__power
+            display: none
 
-            svg
-                width: 18px
-                height: 18px
+    @media (max-width: bp.$md)
+        &__img, &__fuel-type
+            display: none
+
+    @media (max-width: bp.$sm)
+        &__year, &__model
+            display: none

@@ -66,7 +66,10 @@ const createTable = <D,>(data: D[], columnsStruct: ColumnsDef<D>): TableReturnTy
   });
 
   const headers = (Object.entries(columnsStruct) as [string, ColumnDef<D, keyof D>][]).map(([key, headerDef]) => {
-    const headerOb: HeaderOb = { Node: <th>{headerDef.header}</th>, id: key };
+    const thProps: { className?: string } = {};
+    if (headerDef.meta?.className) thProps.className = headerDef.meta.className;
+
+    const headerOb: HeaderOb = { Node: <th {...thProps}>{headerDef.header}</th>, id: key };
 
     const headerDataOb = { id: key };
 

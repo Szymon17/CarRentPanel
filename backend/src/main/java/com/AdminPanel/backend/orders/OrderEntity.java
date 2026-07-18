@@ -1,5 +1,7 @@
 package com.AdminPanel.backend.orders;
 
+import com.AdminPanel.backend.cars.CarEntity;
+import com.AdminPanel.backend.orders.Statuses.StatusEntity;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,16 +14,17 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment from PostgreSQL
     private Integer id;
 
-    @Column(name = "car_id", nullable = false)
-    private Integer carId;
+    @ManyToOne()
+    @JoinColumn(name = "car_id", nullable = false)
+    private CarEntity car;
 
     @Column(name = "user_id", nullable = false)
     private Integer userId;
 
-    @Column(name = "date_of_receipt", nullable = false)
+    @Column(name = "date_of_receipt")
     private LocalDateTime dateOfReceipt;
 
-    @Column(name = "date_of_return", nullable = false)
+    @Column(name = "date_of_return")
     private LocalDateTime dateOfReturn;
 
     @Column(name = "place_of_receipt", nullable = false, length = 255)
@@ -33,17 +36,21 @@ public class OrderEntity {
     @Column(name = "payment_method_id")
     private Integer paymentMethodId;
 
-    @Column(name = "status_id", nullable = false)
-    private Integer statusId = 1; // pending default
+    @ManyToOne()
+    @JoinColumn(name = "status_id", nullable = false)
+    private StatusEntity status;
 
     @Column(name = "add_date", nullable = false)
     private LocalDate addDate;
 
+    @Column(name = "expected_return_date", nullable = false)
+    private LocalDate expectedReturnDate;
+
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
-    public Integer getCarId() { return carId; }
-    public void setCarId(Integer carId) { this.carId = carId; }
+    public CarEntity getCar() { return car; }
+    public void setCar(CarEntity car) { this.car = car; }
 
     public Integer getUserId() { return userId; }
     public void setUserId(Integer userId) { this.userId = userId; }
@@ -63,9 +70,12 @@ public class OrderEntity {
     public Integer getPaymentMethodId() { return paymentMethodId; }
     public void setPaymentMethodId(Integer paymentMethodId) { this.paymentMethodId = paymentMethodId; }
 
-    public Integer getStatusId() { return statusId; }
-    public void setStatusId(Integer statusId) { this.statusId = statusId; }
+    public StatusEntity getStatusId() { return status; }
+    public void setStatusId(StatusEntity status) { this.status = status; }
 
     public LocalDate getAddDate() { return addDate; }
     public void setAddDate(LocalDate addDate) { this.addDate = addDate; }
+
+    public LocalDate getExpectedReturnDate() { return expectedReturnDate; }
+    public void setExpectedReturnDate(LocalDate expectedReturnDate) { this.expectedReturnDate = expectedReturnDate; }
 }

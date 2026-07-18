@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import createTable from "@/components/Table/Table.component";
-import getColumns from "./orderColumns";
-import type { OrderEntity } from "@/types/orders.types";
+import getColumns, { type OrderColumnsUnion } from "./orderColumns";
+import type { PaymentMethodEntity } from "@/types/orders.types";
 
 const Orders = () => {
-  const [orders, setOrders] = useState<OrderEntity[]>([]);
+  const [orders, setOrders] = useState<OrderColumnsUnion[]>([]);
+  const [paymentMethods, setPaymentMethods] = useState<PaymentMethodEntity[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -15,6 +16,7 @@ const Orders = () => {
     try {
       setLoading(true);
       setError(null);
+
       const req = await fetch(`${serverUrl}/orders/list`, { credentials: "include" });
       const res = await req.json();
 
@@ -31,19 +33,35 @@ const Orders = () => {
     }
   };
 
+  const httpGetPaymentMethods = async () => {
+    const serverUrl = import.meta.env.VITE_API_URL;
+
+    try {
+      const req = await fetch(`${serverUrl}/payment-methods/list`, { credentials: "include" });
+      const res = await req.json();
+
+      if (Array.isArray(res)) {
+        setPaymentMethods(res);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     httpGetOrders();
+    httpGetPaymentMethods();
   }, []);
 
   const OrdersTable = useMemo(() => {
-    const columns = getColumns();
+    const columns = getColumns(paymentMethods);
     return createTable(orders, columns);
-  }, [orders]);
+  }, [orders, paymentMethods]);
 
   if (loading) {
     return (
-      <div className="cars">
-        <div className="cars__loading">
+      <div className="orders">
+        <div className="orders__loading">
           <p>Loading orders...</p>
         </div>
       </div>
@@ -66,6 +84,9 @@ const Orders = () => {
   return (
     <div className="orders">
       <div className="orders__actions">
+        <span className="orders__count">
+          {orders.length} {orders.length === 1 ? "record" : "records"}
+        </span>
         <Link to="/orders/create" className="orders__create-btn">
           + Create New Order
         </Link>

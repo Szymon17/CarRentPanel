@@ -30,9 +30,11 @@ a {
 
 .content {
   flex-grow: 1;
+  overflow: hidden;
 }
 
 .content_body {
   padding: 10px;
-  background-color: #f8f9fa;
+  background-color: #f5f7fa;
+  min-height: calc(100vh - 48px);
 }

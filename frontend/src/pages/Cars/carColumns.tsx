@@ -33,18 +33,22 @@ const getColumns = (): ColumnsDef<CarColumnsUnion> => {
     model: {
       header: "Model",
       cell: row => row.getValue(),
+      meta: { className: "cars__model" },
     },
     year: {
       header: "Year",
       cell: row => row.getValue(),
+      meta: { className: "cars__year" },
     },
     power: {
       header: "Power",
       cell: row => row.getValue() + " hp",
+      meta: { className: "cars__power" },
     },
     fuelType: {
       header: "Fuel type",
       cell: row => row.getValue(),
+      meta: { className: "cars__fuel-type" },
     },
     dailyPrice: {
       header: "Daily price",

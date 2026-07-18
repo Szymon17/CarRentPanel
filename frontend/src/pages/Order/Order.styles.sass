@@ -1,0 +1,609 @@
+@use "../../sass/variables" as var
+@use "../../sass/breakpoints" as bp
+
+.order_page
+    min-height: 100vh
+    background: linear-gradient(180deg, #f5f7fa 0%, #eef1f6 100%)
+
+    &__field-error
+        color: #dc2626
+        font-size: 0.75rem
+        margin-top: 2px
+
+    &__header
+        background: white
+        border-bottom: 1px solid #dde3ea
+        padding: 14px 24px
+        position: sticky
+        top: 0
+        z-index: 100
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06)
+
+    &__header-content
+        display: flex
+        justify-content: space-between
+        align-items: center
+        gap: 16px
+
+    &__header-left
+        flex: 1
+
+    &__breadcrumb
+        display: flex
+        align-items: center
+        gap: 6px
+        font-size: 0.8125rem
+        margin-bottom: 3px
+
+        a
+            color: var.$primary
+            text-decoration: none
+            font-weight: 500
+
+            &:hover
+                text-decoration: underline
+
+        &-sep
+            color: #cbd5e1
+
+        span
+            color: #64748b
+
+    &__page-title
+        margin: 0
+        font-size: 1.25rem
+        font-weight: 700
+        color: #0f172a
+        letter-spacing: -0.01em
+
+    &__header-actions
+        display: flex
+        align-items: center
+        gap: 12px
+
+    &__status-badge
+        display: inline-flex
+        align-items: center
+        gap: 6px
+        padding: 5px 12px
+        border-radius: 20px
+        font-size: 0.75rem
+        font-weight: 700
+        text-transform: uppercase
+        letter-spacing: 0.4px
+        background: var.$info-bg
+        color: var.$info-color
+        border: 1px solid var.$info-border
+
+        &--success
+            background: var.$success-bg
+            color: var.$success-color
+            border-color: var.$success-border
+
+            .order_page__status-dot
+                background: var.$success-dot
+
+        &--warning
+            background: var.$warning-bg
+            color: var.$warning-color
+            border-color: var.$warning-border
+
+            .order_page__status-dot
+                background: var.$warning-dot
+
+        &--danger
+            background: var.$danger-bg
+            color: var.$danger-color
+            border-color: var.$danger-border
+
+            .order_page__status-dot
+                background: var.$danger-dot
+
+        &--info
+            .order_page__status-dot
+                background: var.$info-dot
+
+    &__status-dot
+        display: inline-block
+        width: 6px
+        height: 6px
+        border-radius: 50%
+        background: var.$info-dot
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15)
+
+    &__container
+        padding: 24px 32px
+        display: flex
+        flex-direction: column
+        gap: 18px
+
+    &__hero-card
+        background: white
+        border: 1px solid #dde3ea
+        border-top: 3px solid var.$info-dot
+        border-radius: 8px
+        display: grid
+        grid-template-columns: minmax(220px, 400px) 1fr
+        overflow: hidden
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05)
+
+        &--success
+            border-top-color: var.$success-dot
+
+        &--warning
+            border-top-color: var.$warning-dot
+
+        &--danger
+            border-top-color: var.$danger-dot
+
+        &--info
+            border-top-color: var.$info-dot
+
+    &__hero-image-wrapper
+        position: relative
+        min-height: 180px
+        background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%)
+        overflow: hidden
+
+    &__hero-image
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+
+        img
+            width: 100%
+            height: 100%
+            object-fit: cover
+
+    &__hero-empty
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        color: #94a3b8
+        gap: 8px
+
+        p
+            margin: 0
+            font-size: 0.75rem
+            text-align: center
+            padding: 0 20px
+
+    &__hero-empty-icon
+        width: 36px
+        height: 36px
+        opacity: 0.35
+
+    &__hero-info
+        padding: 20px 24px
+        display: flex
+        flex-direction: column
+        gap: 14px
+        border-left: 1px solid #dde3ea
+
+    &__hero-title-section
+        border-bottom: 1px solid #e8edf2
+        padding-bottom: 12px
+
+    &__hero-title
+        margin: 0 0 3px 0
+        font-size: 1.1875rem
+        font-weight: 700
+        color: #0f172a
+        letter-spacing: -0.01em
+
+    &__hero-subtitle
+        margin: 0
+        font-size: 0.8125rem
+        color: #64748b
+
+    &__hero-specs
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+        gap: 8px
+
+    &__hero-spec
+        display: flex
+        flex-direction: column
+        gap: 3px
+        background: #f8fafc
+        border: 1px solid #e8edf2
+        padding: 10px 12px
+        border-radius: 6px
+        transition: border-color 0.15s ease, background 0.15s ease
+
+        &:hover
+            border-color: #cbd5e1
+            background: #f1f5f9
+
+    &__hero-spec-label
+        font-size: 0.625rem
+        color: #64748b
+        text-transform: uppercase
+        letter-spacing: 0.5px
+        font-weight: 700
+
+    &__hero-spec-value
+        font-size: 0.8125rem
+        color: #1e293b
+        font-weight: 600
+        display: flex
+        align-items: center
+        gap: 4px
+
+        &.order_page__hero-spec-with-icon
+            svg
+                width: 12px
+                height: 12px
+                flex-shrink: 0
+                color: #94a3b8
+
+    &__form-container
+        display: flex
+        flex-direction: column
+        gap: 18px
+
+    &__message
+        padding: 12px 16px
+        border-radius: 6px
+        font-size: 0.875rem
+        font-weight: 500
+        border-left: 3px solid transparent
+        display: flex
+        align-items: center
+        gap: 10px
+
+        &-icon
+            width: 16px
+            height: 16px
+            flex-shrink: 0
+
+        &--success
+            background: var.$success-bg
+            color: var.$success-color
+            border-color: var.$success-dot
+
+        &--error
+            background: var.$danger-bg
+            color: var.$danger-color
+            border-color: var.$danger-dot
+
+    &__form-section
+        background: white
+        border: 1px solid #dde3ea
+        border-radius: 8px
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04)
+
+    &__form-header
+        background: #f8fafc
+        padding: 12px 18px
+        border-bottom: 1px solid #dde3ea
+        border-radius: 8px 8px 0 0
+        display: flex
+        align-items: center
+        gap: 10px
+
+        &-icon
+            width: 15px
+            height: 15px
+            color: var.$primary-darker
+            flex-shrink: 0
+
+        &-content
+            h3
+                margin: 0 0 1px 0
+                font-size: 0.8125rem
+                font-weight: 700
+                color: #0f172a
+
+            p
+                margin: 0
+                color: #64748b
+                font-size: 0.75rem
+
+    &__form-grid
+        padding: 18px
+        display: grid
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
+        gap: 14px
+
+        &--1col
+            grid-template-columns: minmax(0, 320px)
+
+        &--2col
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+
+    &__field
+        display: flex
+        flex-direction: column
+        gap: 4px
+
+        label
+            font-weight: 700
+            font-size: 0.6875rem
+            color: #374151
+            text-transform: uppercase
+            letter-spacing: 0.5px
+            display: flex
+            align-items: center
+            gap: 3px
+
+        input
+            border: 1px solid #dde3ea
+            border-radius: 5px
+            padding: 8px 10px
+            font-size: 0.875rem
+            outline: none
+            transition: border-color 0.15s ease, box-shadow 0.15s ease
+            color: #1e293b
+            font-family: inherit
+            background: white
+            width: 100%
+            box-sizing: border-box
+
+            &::placeholder
+                color: #94a3b8
+
+            &:focus
+                border-color: var.$primary
+                box-shadow: 0 0 0 3px rgba(10, 22, 36, 0.08)
+
+            &:hover:not(:focus)
+                border-color: #94a3b8
+
+    &__input--error
+        border-color: #dc2626 !important
+
+        &:focus
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important
+
+    &__select--error > div
+        border-color: #dc2626 !important
+
+    &__required
+        color: #dc2626
+        font-weight: 700
+
+    &__date-wrapper
+        width: 100%
+
+        .react-datepicker-wrapper
+            width: 100%
+
+        .react-datepicker__input-container input
+            border: 1px solid #dde3ea
+            border-radius: 5px
+            padding: 8px 10px
+            font-size: 0.875rem
+            outline: none
+            transition: border-color 0.15s ease, box-shadow 0.15s ease
+            color: #1e293b
+            font-family: inherit
+            background: white
+            width: 100%
+            box-sizing: border-box
+
+            &::placeholder
+                color: #94a3b8
+
+            &:focus
+                border-color: var.$primary
+                box-shadow: 0 0 0 3px rgba(10, 22, 36, 0.08)
+
+            &:hover:not(:focus)
+                border-color: #94a3b8
+
+    .react-datepicker
+        font-family: inherit
+        border: 1px solid #dde3ea
+        border-radius: 8px
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12)
+        overflow: hidden
+
+    .react-datepicker__header
+        background: #f8fafc
+        border-bottom: 1px solid #dde3ea
+
+    .react-datepicker__triangle
+        display: none
+
+    .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected
+        background: var.$primary
+        border-radius: 4px
+
+        &:hover
+            background: var.$primary-darker
+
+    .react-datepicker__time-list-item--selected
+        background: var.$primary !important
+
+    &__customer
+        padding: 18px
+        display: flex
+        flex-direction: column
+        gap: 14px
+
+    &__customer-card
+        display: flex
+        align-items: center
+        gap: 14px
+        background: #f8fafc
+        border: 1px solid #e8edf2
+        border-radius: 8px
+        padding: 14px 16px
+
+    &__customer-avatar
+        width: 44px
+        height: 44px
+        min-width: 44px
+        border-radius: 50%
+        background: var.$primary
+        color: white
+        display: flex
+        align-items: center
+        justify-content: center
+        font-weight: 700
+        font-size: 0.9375rem
+        letter-spacing: 0.02em
+
+    &__customer-details
+        display: flex
+        flex-direction: column
+        gap: 4px
+        min-width: 0
+
+    &__customer-name
+        font-size: 0.9375rem
+        font-weight: 700
+        color: #0f172a
+
+    &__customer-meta
+        display: flex
+        flex-wrap: wrap
+        gap: 4px 16px
+
+        span
+            display: inline-flex
+            align-items: center
+            gap: 5px
+            font-size: 0.75rem
+            color: #64748b
+
+            svg
+                width: 11px
+                height: 11px
+                flex-shrink: 0
+                color: #94a3b8
+
+    &__customer-empty
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        gap: 8px
+        padding: 20px
+        background: #f8fafc
+        border: 1px dashed #cbd5e1
+        border-radius: 8px
+        color: #94a3b8
+        text-align: center
+
+        svg
+            width: 24px
+            height: 24px
+            opacity: 0.5
+
+        p
+            margin: 0
+            font-size: 0.75rem
+            max-width: 320px
+
+    &__customer-id-field
+        padding: 0
+
+    &__customer-search
+        position: relative
+        width: 100%
+
+    &__customer-suggestions
+        position: absolute
+        top: calc(100% + 4px)
+        left: 0
+        right: 0
+        z-index: 20
+        background: white
+        border: 1px solid #dde3ea
+        border-radius: 6px
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12)
+        max-height: 260px
+        overflow-y: auto
+
+    &__customer-suggestion
+        display: flex
+        flex-direction: column
+        gap: 2px
+        padding: 8px 12px
+        cursor: pointer
+        border-bottom: 1px solid #f1f5f9
+
+        &:last-child
+            border-bottom: none
+
+        &:hover
+            background: #f0f4f8
+
+    &__customer-suggestion-name
+        font-size: 0.8125rem
+        font-weight: 600
+        color: #1e293b
+
+    &__customer-suggestion-meta
+        font-size: 0.75rem
+        color: #64748b
+
+    &__actions-section
+        background: white
+        border: 1px solid #dde3ea
+        border-radius: 8px
+        padding: 18px
+        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04)
+
+    &__actions
+        display: flex
+        gap: 10px
+        flex-wrap: wrap
+
+    .loader
+        position: fixed
+        left: 50%
+        top: 50%
+        width: 60px
+        height: 60px
+        transform: translate(-50%, -50%)
+        z-index: 1000
+
+    @media (max-width: bp.$lg)
+        &__hero-specs
+            grid-template-columns: repeat(2, 1fr)
+
+    @media (max-width: bp.$md)
+        &__header
+            padding: 10px 16px
+
+        &__container
+            padding: 14px 16px
+
+        &__hero-card
+            grid-template-columns: 1fr
+
+        &__hero-image-wrapper
+            min-height: 180px
+
+        &__hero-info
+            border-left: none
+            border-top: 1px solid #dde3ea
+
+    @media (max-width: bp.$sm)
+        &__hero-specs
+            grid-template-columns: 1fr
+
+        &__form-grid
+            &--2col
+                grid-template-columns: 1fr
+
+        &__customer-card
+            flex-direction: column
+            align-items: flex-start
+
+        &__actions
+            flex-direction: column
+
+            button
+                width: 100%

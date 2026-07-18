@@ -1,11 +1,10 @@
 import "./Car.styles.sass";
-import Button from "@/components/Button/Button.component";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import Button, { BUTTON_TYPES } from "@/components/Button/Button.component";
 import Loader from "@/components/Loader/Loader.component";
 import Popup from "@/components/Popup/Popup.component";
 import Select from "@/components/Select/Select.component";
-import type { CarEntity } from "@/types/cars.types";
-import { useEffect, useMemo, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
 import CarFrontFill from "bootstrap-icons/icons/car-front-fill.svg?react";
 import GeoAltFill from "bootstrap-icons/icons/geo-alt-fill.svg?react";
 import CheckCircle from "bootstrap-icons/icons/check-circle-fill.svg?react";
@@ -14,6 +13,7 @@ import InfoCircle from "bootstrap-icons/icons/info-circle-fill.svg?react";
 import Gear from "bootstrap-icons/icons/gear-fill.svg?react";
 import FuelPumpFill from "bootstrap-icons/icons/fuel-pump-fill.svg?react";
 import CurrencyDollar from "bootstrap-icons/icons/currency-dollar.svg?react";
+import type { CarEntity } from "@/types/cars.types";
 
 const Car = () => {
   const [searchParams] = useSearchParams();
@@ -303,11 +303,9 @@ const Car = () => {
   );
 
   const resetForm = async () => {
-    if (isCreateMode) {
-      initializeForm();
-    } else if (car) {
-      setForm(car);
-    }
+    if (isCreateMode) initializeForm();
+    else if (car) setForm(car);
+
     setDebouncedImageUrl("");
     setImageError(false);
     setImageLoading(false);
@@ -504,16 +502,16 @@ const Car = () => {
               <Button fn={handleSave} disabled={saving} className="car_page__btn-primary">
                 {saving ? (isCreateMode ? "Creating..." : "Saving...") : isCreateMode ? "Create Vehicle" : "Save Changes"}
               </Button>
-              <Button fn={resetForm} className="car_page__btn-secondary">
+              <Button fn={resetForm} buttonType={BUTTON_TYPES.SECONDARY}>
                 {isCreateMode ? "Reset Form" : "Reset Changes"}
               </Button>
               {!isCreateMode && (
-                <Button fn={handleDelete} className="car_page__btn-danger">
+                <Button fn={handleDelete} buttonType={BUTTON_TYPES.DANGER}>
                   Delete Vehicle
                 </Button>
               )}
               {isCreateMode && (
-                <Button fn={async () => navigate("/cars")} className="car_page__btn-cancel">
+                <Button fn={async () => navigate("/cars")} buttonType={BUTTON_TYPES.CANCEL}>
                   Cancel
                 </Button>
               )}

@@ -19,14 +19,9 @@
     &.btn-primary
         background: linear-gradient(135deg, var.$primary 0%, var.$primary-darker 100%)
         color: white
-        box-shadow: 0 2px 8px rgba(10, 22, 36, 0.2)
 
         &:hover:not(:disabled)
-            transform: translateY(-1px)
-            box-shadow: 0 4px 12px rgba(10, 22, 36, 0.3)
-
-        &:active:not(:disabled)
-            transform: translateY(0)
+            background: linear-gradient(135deg, color.adjust(var.$primary, $lightness: 15%) 0%, color.adjust(var.$primary-darker, $lightness: 2%) 100%)
 
         &:disabled
             opacity: 0.65
@@ -34,8 +29,7 @@
             transform: none
             box-shadow: none
 
-    // Override styles from Car page
-    &.car_page__btn-secondary
+    &.btn-secondary
         background: white
         color: #4a5568
         border: 1px solid #cbd5e0
@@ -45,21 +39,12 @@
             background: #f7fafc
             border-color: var.$primary
             color: var.$primary
-            transform: translateY(-1px)
 
-    &.car_page__btn-danger
+    &.btn-danger
         background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%)
         color: white
-        box-shadow: 0 2px 8px rgba(229, 62, 62, 0.2)
 
-        &:hover
-            transform: translateY(-1px)
-            box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3)
-
-        &:active
-            transform: translateY(0)
-
-    &.car_page__btn-cancel
+    &.btn-cancel
         background: #e2e8f0
         color: #4a5568
         box-shadow: none
@@ -67,4 +52,3 @@
         &:hover
             background: #cbd5e0
             color: #2d3748
-            transform: translateY(-1px)

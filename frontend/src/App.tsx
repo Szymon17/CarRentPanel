@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import Cars from "./pages/Cars/Cars.tsx";
 import Car from "./pages/Car/Car.tsx";
 import Orders from "./pages/Orders/Orders.tsx";
+import Order from "./pages/Order/Order.tsx";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
             <Route path="cars/create" element={<Car />} />
 
             <Route path="Orders" element={<Orders />} />
+            <Route path="orders/order" element={<Order />} />
+            <Route path="orders/create" element={<Order />} />
           </Route>
         </Routes>
         <ToastContainer />

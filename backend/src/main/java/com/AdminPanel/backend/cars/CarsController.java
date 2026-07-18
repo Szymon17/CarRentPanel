@@ -1,6 +1,6 @@
 package com.AdminPanel.backend.cars;
 
-import com.AdminPanel.backend.cars.dto.GetCarsResponse;
+import com.AdminPanel.backend.cars.dto.OrderWithCarResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +19,10 @@ public class CarsController {
     }
 
     @GetMapping("/list")
-    public GetCarsResponse httpGetList(HttpServletRequest req, HttpServletResponse res){
+    public OrderWithCarResponse httpGetList(HttpServletRequest req, HttpServletResponse res){
         List<CarEntity> cars = carsRepository.findFirst50Cars();
 
-        return new GetCarsResponse(cars);
+        return new OrderWithCarResponse(cars);
     }
 
     @GetMapping("/car")
